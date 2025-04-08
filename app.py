@@ -1,5 +1,5 @@
-import streamlit as st
 import pandas as pd
+import streamlit as st
 import matplotlib.pyplot as plt
 
 # Configuratie
@@ -8,9 +8,14 @@ st.set_page_config(layout="centered", page_title="📊 Order Analyse")
 # Titel
 st.title("📊 Order Analyse Dashboard")
 
-# Data inladen
-df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv", parse_dates=["aankoopdatum"], dayfirst=True, errors="coerce")
-df = df[df["aankoopdatum"].notna()]  # Verwijder rijen zonder geldige datum
+# Stap 1: CSV inlezen zonder datumconversie
+df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv")
+
+# Stap 2: Conversie van 'aankoopdatum' naar datetime
+df["aankoopdatum"] = pd.to_datetime(df["aankoopdatum"], dayfirst=True, errors="coerce")
+
+# Stap 3: Alleen geldige datums behouden
+df = df[df["aankoopdatum"].notna()]
 
 # Tabs
 tab1, tab2 = st.tabs(["📈 Leeftijd per Merk", "📆 Aankopen per Week"])
