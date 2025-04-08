@@ -44,5 +44,5 @@ with tab2:
     aankopen_per_week.plot(kind="bar", ax=ax2, color="#2196F3")
     ax2.set_xlabel("Weeknummer")
     ax2.set_ylabel("Aantal aankopen")
-    ax2.set_title(f"Aankopen per week in {selected_year}")
+    ax2.set_title("Aankopen per week in {selected_year}")
     st.pyplot(fig2)
