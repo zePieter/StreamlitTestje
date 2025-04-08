@@ -9,7 +9,7 @@ st.set_page_config(layout="centered", page_title="📊 Order Analyse")
 st.title("📊 Order Analyse Dashboard")
 
 # Data inladen
-df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv", parse_dates=["aankoopdatum"], dayfirst=True)
+df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv", parse_dates=["aankoopdatum"], dayfirst=True, errors="coerce")
 
 # Tabs
 tab1, tab2 = st.tabs(["📈 Leeftijd per Merk", "📆 Aankopen per Week"])
