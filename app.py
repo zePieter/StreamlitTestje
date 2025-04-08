@@ -17,12 +17,15 @@ df["aankoopdatum"] = pd.to_datetime(df["aankoopdatum"], dayfirst=True, errors="c
 # Stap 3: Alleen geldige datums behouden
 df = df[df["aankoopdatum"].notna()]
 
-st.write("Voorbeeld van data:")
-st.dataframe(df[["Merk", "Leeftijd"]].head(20))
+st.dataframe(df[["merk", "leeftijd"]].head(20))
 
-st.write("Unieke leeftijden:", df["Leeftijd"].unique())
-st.write("Gemiddelde leeftijden per merk:")
-st.dataframe(df.groupby("Merk")["Leeftijd"].mean().reset_index())
+leeftijd_per_merk = df.groupby("merk")["leeftijd"].mean().sort_values()
+fig1, ax1 = plt.subplots()
+leeftijd_per_merk.plot(kind="bar", ax=ax1, color="#4CAF50")
+ax1.set_ylabel("Gemiddelde leeftijd")
+ax1.set_xlabel("Merk")
+ax1.set_title("Gemiddelde leeftijd per merk")
+st.pyplot(fig1)
 
 # Tabs
 tab1, tab2 = st.tabs(["📈 Leeftijd per Merk", "📆 Aankopen per Week"])
