@@ -10,6 +10,7 @@ st.title("📊 Order Analyse Dashboard")
 
 # Data inladen
 df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv", parse_dates=["aankoopdatum"], dayfirst=True, errors="coerce")
+df = df[df["aankoopdatum"].notna()]  # Verwijder rijen zonder geldige datum
 
 # Tabs
 tab1, tab2 = st.tabs(["📈 Leeftijd per Merk", "📆 Aankopen per Week"])
